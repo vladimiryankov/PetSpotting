@@ -127,7 +127,10 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.mainLayout, lostPetsFragment)
                     .commit();
         } else if (id == R.id.nav_found_pets) {
-
+            FoundPetsFragment foundPetsFragment = new FoundPetsFragment();
+            sFm.beginTransaction()
+                    .replace(R.id.mainLayout, foundPetsFragment)
+                    .commit();
         } else if (id == R.id.nav_profile) {
             Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_about) {

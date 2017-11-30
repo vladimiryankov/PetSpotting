@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class AboutFragment extends Fragment {
 
 
@@ -26,7 +27,6 @@ public class AboutFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Log.i("test", "test message");
-
         return inflater.inflate(R.layout.fragment_about, container, false);
     }
 

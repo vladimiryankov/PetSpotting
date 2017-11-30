@@ -1,6 +1,8 @@
 package com.vladimiryankov.petspotting;
 
 
+import android.*;
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
@@ -79,6 +81,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             return;
         }
         locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
@@ -93,7 +97,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            return null;
+            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+//            return;
         }
         return locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     }
@@ -171,7 +177,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         gMap = googleMap;
 
         Location location = getCurrentLocation();
-        LatLng currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng currentPosition = null;
+        if (location != null){
+            currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
+        }
 
         //Load the pet locations
         ParseQuery<ParseObject> query = new ParseQuery<>("LostPet");
